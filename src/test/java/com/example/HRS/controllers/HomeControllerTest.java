@@ -1,5 +1,6 @@
-package com.example.HRS;
+package com.example.HRS.controllers;
 
+import com.example.HRS.controllers.HomeController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
