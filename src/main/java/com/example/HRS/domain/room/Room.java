@@ -6,4 +6,9 @@ import lombok.Data;
 public class Room {
 
     private final String number;
+
+    @Override
+    public String toString() {
+        return this.number;
+    }
 }
