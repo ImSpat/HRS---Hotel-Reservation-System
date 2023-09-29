@@ -7,14 +7,24 @@
     <title>HRS - goście</title>
 </head>
 <body>
-    <h2>Lista gości</h2>
-    <table>
-        <tr>
-            <td th:text="${guest.firstName}"/>
-            <td th:text="${guest.lastName}"/>
-            <td th:text="${guest.birthDate}"/>
-            <td th:text="${guest.gender}"/>
-        </tr>
-    </table>
+<h2>Lista gości</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Data urodzenia</th>
+        <th>Płeć</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="guest : ${guests}">
+        <td th:text="${guest.firstName}"/>
+        <td th:text="${guest.lastName}"/>
+        <td th:text="${guest.birthDate}"/>
+        <td th:text="${guest.gender}"/>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
