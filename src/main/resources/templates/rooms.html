@@ -7,7 +7,18 @@
     <title>HRS - pokoje</title>
 </head>
 <body>
-    <h2>Lista pokoji</h2>
-    <p th:text="${room}"/>
+<h2>Lista pokoi</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Numer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.number}"/>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
