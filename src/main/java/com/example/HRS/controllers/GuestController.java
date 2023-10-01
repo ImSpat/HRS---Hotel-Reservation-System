@@ -1,5 +1,6 @@
 package com.example.HRS.controllers;
 
+import com.example.HRS.controllers.dto.GuestCreationDTO;
 import com.example.HRS.domain.guest.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,13 +31,9 @@ public class GuestController {
     }
 
     @PostMapping("/createNewGuest")
-    public String handleCreateNewGuest(
-            @RequestParam String firstName,
-            @RequestParam String lastName,
-            @RequestParam String dateOfBirth,
-            @RequestParam String gender) {
+    public String handleCreateNewGuest(GuestCreationDTO dto) {
 
-        this.guestService.createNewGuest(firstName, lastName, dateOfBirth, gender);
+        this.guestService.createNewGuest(dto);
 
         return "redirect:guests";
 
