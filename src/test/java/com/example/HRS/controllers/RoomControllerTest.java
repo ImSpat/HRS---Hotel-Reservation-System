@@ -1,5 +1,6 @@
 package com.example.HRS.controllers;
 
+import com.example.HRS.domain.room.BedType;
 import com.example.HRS.domain.room.Room;
 import com.example.HRS.domain.room.RoomService;
 import org.junit.jupiter.api.Test;
@@ -27,12 +28,13 @@ public class RoomControllerTest {
     @Test
     public void basicRoomsTest() throws Exception {
 
-        Room room = new Room("102");
+        Room room = new Room("102", Arrays.asList(BedType.DOUBLE));
 
         Mockito.when(roomService.findAll()).thenReturn(Arrays.asList(room));
 
         mockMvc.perform(get("/rooms"))
                 .andExpect(status().isOk())
+                .andExpect(model().attributeExists("rooms"))
                 .andExpect(view().name("rooms"))
                 .andExpect(content().string(containsString("102")));
     }
