@@ -24,4 +24,8 @@ public class GuestService {
     public void createNewGuest(GuestCreationDTO dto) {
         this.repository.createNewGuest(dto.getFirstName(), dto.getLastName(), dto.getDateOfBirth(), dto.getGender());
     }
+
+    public void removeById(long id) {
+        this.repository.removeById(id);
+    }
 }

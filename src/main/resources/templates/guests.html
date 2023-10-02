@@ -25,6 +25,9 @@
         <td th:text="${guest.lastName}"/>
         <td th:text="${guest.birthDate}"/>
         <td th:text="${guest.gender}"/>
+        <td>
+            <a th:href="@{/guests/delete/{id}(id=${guest.id})}">Usuń</a>
+        </td>
     </tr>
     </tbody>
 </table>

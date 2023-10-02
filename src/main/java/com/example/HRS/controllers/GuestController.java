@@ -5,10 +5,7 @@ import com.example.HRS.domain.guest.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/guests")
@@ -34,10 +31,13 @@ public class GuestController {
 
     @PostMapping
     public String handleCreateNewGuest(GuestCreationDTO dto) {
-
         this.guestService.createNewGuest(dto);
+        return "redirect:/guests";
+    }
 
-        return "redirect:guests";
-
+    @GetMapping("/delete/{id}")
+    public String removeGuest(@PathVariable long id) {
+        this.guestService.removeById(id);
+        return "redirect:/guests";
     }
 }

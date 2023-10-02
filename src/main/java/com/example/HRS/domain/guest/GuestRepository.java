@@ -27,4 +27,13 @@ public class GuestRepository {
         Guest newOne = new Guest(firstName, lastName, dateOfBirth, gender);
         this.guests.add(newOne);
     }
+
+    public void removeById(long id) {
+        Guest guestToBeDeleted = this.guests.stream()
+                .filter(guest -> guest.getId() == id)
+                .findFirst()
+                .orElseThrow();
+
+        this.guests.remove(guestToBeDeleted);
+    }
 }
