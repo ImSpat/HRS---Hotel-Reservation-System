@@ -29,11 +29,15 @@ public class GuestRepository {
     }
 
     public void removeById(long id) {
-        Guest guestToBeDeleted = this.guests.stream()
+        Guest guestToBeDeleted = getById(id);
+
+        this.guests.remove(guestToBeDeleted);
+    }
+
+    public Guest getById(long id) {
+        return this.guests.stream()
                 .filter(guest -> guest.getId() == id)
                 .findFirst()
                 .orElseThrow();
-
-        this.guests.remove(guestToBeDeleted);
     }
 }
