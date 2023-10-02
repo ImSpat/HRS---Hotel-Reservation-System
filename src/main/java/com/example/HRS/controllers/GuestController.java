@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/guests")
 public class GuestController {
 
     private GuestService guestService;
@@ -19,18 +21,18 @@ public class GuestController {
         this.guestService = guestService;
     }
 
-    @GetMapping("/guests")
+    @GetMapping
     public String guests(Model model) {
         model.addAttribute("guests", this.guestService.findAll());
         return "guests";
     }
 
-    @GetMapping("/createNewGuest")
+    @GetMapping("/create")
     public String createNewGuest() {
         return "createNewGuest";
     }
 
-    @PostMapping("/createNewGuest")
+    @PostMapping
     public String handleCreateNewGuest(GuestCreationDTO dto) {
 
         this.guestService.createNewGuest(dto);

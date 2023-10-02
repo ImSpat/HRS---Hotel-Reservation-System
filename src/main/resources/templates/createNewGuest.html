@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>Dodaj nowego gościa</h2>
-<form th:action="@{/createNewGuest}" method="post">
+<form th:action="@{/guests}" method="post">
     <p>Imię: <input type="text" name="firstName" required/></p>
     <p>Nazwisko: <input type="text" name="lastName" required /></p>
     <p>Data urodzenia: <input type="date" name="dateOfBirth" required /></p>
