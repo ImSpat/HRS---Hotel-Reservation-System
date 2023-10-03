@@ -8,13 +8,13 @@ import java.util.List;
 
 @Repository
 public class RoomRepository {
-
-    public List<Room> rooms = new ArrayList<>();
+    List<Room> rooms = new ArrayList<>();
 
     public RoomRepository() {
-        Room room1 = new Room("102", Arrays.asList(BedType.SINGLE));
-        Room room2 = new Room("203", Arrays.asList(BedType.DOUBLE));
-        this.rooms.addAll(Arrays.asList(room1, room2));
+        Room room = new Room("102", Arrays.asList(BedType.SINGLE));
+        Room r = new Room("203", Arrays.asList(BedType.DOUBLE));
+        this.rooms.add(room);
+        this.rooms.add(r);
     }
 
     public List<Room> findAll() {
@@ -22,8 +22,20 @@ public class RoomRepository {
     }
 
     public Room createNewRoom(String roomNumber, List<BedType> beds) {
-        Room room = new Room(roomNumber, beds);
-        this.rooms.add(room);
-        return room;
+        Room r = new Room(roomNumber, beds);
+        this.rooms.add(r);
+        return r;
+    }
+
+    public void removeById(long id) {
+        Room toBeDeleted = this.findById(id);
+        this.rooms.remove(toBeDeleted);
+    }
+
+    public Room findById(long id) {
+        return this.rooms.stream()
+                .filter(room -> room.getId() == id)
+                .findFirst()
+                .orElseThrow();
     }
 }

@@ -17,6 +17,13 @@
     <tbody>
     <tr th:each="room : ${rooms}">
         <td th:text="${room.number}"/>
+        <td th:text="${room.size}"/>
+        <td>
+            <a th:href="@{/rooms/delete/{id}(id=${room.id})}">Usuń</a>
+        </td>
+        <td>
+            <a th:href="@{/rooms/edit/{id}(id=${room.id})}">Edytuj</a>
+        </td>
     </tr>
     </tbody>
 </table>

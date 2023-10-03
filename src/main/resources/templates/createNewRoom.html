@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<h2>Dodaj nowego gościa</h2>
-<form th:action="@{/createNewRoom}" method="post">
+<h2>Dodaj nowy pokój</h2>
+<form th:action="@{/rooms/create}" method="post">
     <p>Numer pokoju: <input type="text" name="number" required/></p>
     <p>Rozkład Lóżek:
         <select name="bedsDesc">

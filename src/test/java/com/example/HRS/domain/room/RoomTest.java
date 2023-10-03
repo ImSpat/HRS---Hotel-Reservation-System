@@ -28,4 +28,11 @@ public class RoomTest {
         Room room = new Room("102", Arrays.asList(BedType.SINGLE, BedType.DOUBLE));
         assertEquals(3, room.getSize());
     }
+
+    @Test
+    public void testBedsToString() {
+        Room r = new Room("102", Arrays.asList(BedType.DOUBLE, BedType.SINGLE));
+        String result = r.getBedsAsStr();
+        assertEquals("2+1", result);
+    }
 }
