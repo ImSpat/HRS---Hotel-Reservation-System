@@ -5,27 +5,56 @@
 <head>
     <meta charset="UTF-8">
     <title>HRS - pokoje</title>
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2>Lista pokoi</h2>
-<table>
-    <thead>
-    <tr>
-        <th>Numer</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="room : ${rooms}">
-        <td th:text="${room.number}"/>
-        <td th:text="${room.size}"/>
-        <td>
-            <a th:href="@{/rooms/delete/{id}(id=${room.id})}">Usuń</a>
-        </td>
-        <td>
-            <a th:href="@{/rooms/edit/{id}(id=${room.id})}">Edytuj</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">HRS - Hotel Reservation System</a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Główna<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/guests">Goście</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rooms">Pokoje</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="p-3 text-center bg-light">
+    <h2 class="mb-3">Lista Pokoi</h2>
+</div>
+
+<div class="container">
+    <a class="nav-link" href="/rooms/create">Utwórz nowy pokój</a>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Numer</th>
+            <th>Rozmiar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="room : ${rooms}">
+            <td th:text="${room.number}"/>
+            <td th:text="${room.size}"/>
+            <td>
+                <a th:href="@{/rooms/delete/{id}(id=${room.id})}">Usuń</a>
+            </td>
+            <td>
+                <a th:href="@{/rooms/edit/{id}(id=${room.id})}">Edytuj</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>

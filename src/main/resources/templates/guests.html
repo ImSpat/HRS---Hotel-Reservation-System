@@ -5,34 +5,57 @@
 <head>
     <meta charset="UTF-8">
     <title>HRS - goście</title>
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" />
 </head>
 <body>
-<h2>Lista gości</h2>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Imię</th>
-        <th>Nazwisko</th>
-        <th>Data urodzenia</th>
-        <th>Płeć</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="guest : ${guests}">
-        <td th:text="${guest.id}"/>
-        <td th:text="${guest.firstName}"/>
-        <td th:text="${guest.lastName}"/>
-        <td th:text="${guest.birthDate}"/>
-        <td th:text="${guest.gender}"/>
-        <td>
-            <a th:href="@{/guests/delete/{id}(id=${guest.id})}">Usuń</a>
-        </td>
-        <td>
-            <a th:href="@{/guests/edit/{id}(id=${guest.id})}">Edytuj</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">HRS - Hotel Reservation System</a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Główna<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/guests">Goście</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rooms">Pokoje</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="p-3 text-center bg-light">
+    <h2 class="mb-3">Lista Gości</h2>
+</div>
+<div class="container">
+    <a class="nav-link" href="/guests/create">Utwórz nowego gościa</a>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Data urodzenia</th>
+            <th>Płeć</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="guest : ${guests}">
+            <td th:text="${guest.firstName}"/>
+            <td th:text="${guest.lastName}"/>
+            <td th:text="${guest.birthDate}"/>
+            <td th:text="${guest.gender}"/>
+            <td>
+                <a th:href="@{/guests/delete/{id}(id=${guest.id})}">Usuń</a>
+            </td>
+            <td>
+                <a th:href="@{/guests/edit/{id}(id=${guest.id})}">Edytuj</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
 </body>
 </html>

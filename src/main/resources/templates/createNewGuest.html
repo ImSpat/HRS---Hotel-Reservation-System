@@ -1,22 +1,63 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Utwórz nowego gościa</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" />
 </head>
 <body>
-<h2>Dodaj nowego gościa</h2>
-<form th:action="@{/guests}" method="post">
-    <p>Imię: <input type="text" name="firstName" required/></p>
-    <p>Nazwisko: <input type="text" name="lastName" required /></p>
-    <p>Data urodzenia: <input type="date" name="dateOfBirth" required /></p>
-    <p>Płeć:
-        <select name="gender">
-            <option value="MALE">Mężyczna</option>
-            <option value="FEMALE">Kobieta</option>
-        </select>
-    </p>
-    <p><input type="submit" value="Submit" /></p>
-</form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">HRS - Hotel Reservation System</a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Główna<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/guests">Goście</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rooms">Pokoje</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="p-3 text-center bg-light">
+    <h3 class="mb-3">Dodaj nowego gościa</h3>
+</div>
+
+<div class="container">
+    <form th:action="@{/guests}" method="post">
+
+        <div class="form-group">
+            <label for="createnewguestfirstname">Imię:</label>
+            <input type="text" name="firstName" required
+                   class="form-control" id="createnewguestfirstname" />
+        </div>
+
+        <div class="form-group">
+            <label for="createnewguestlastname">Nazwisko:</label>
+            <input type="text" name="lastName" required
+                   class="form-control" id="createnewguestlastname"/>
+        </div>
+
+        <div class="form-group">
+            <label for="createnewguestdateofbirth">Data urodzenia:</label>
+            <input type="date" name="dateOfBirth"
+                   class="form-control" id="createnewguestdateofbirth"/>
+        </div>
+        <div class="form-group">
+            <label for="createnewguestgender">Płeć:</label>
+            <select name="gender" class="form-control" id="createnewguestgender">
+                <option value="MALE">Mężyczna</option>
+                <option value="FEMALE">Kobieta</option>
+            </select>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Utwórz gościa" />
+    </form>
+</div>
 </body>
 </html>

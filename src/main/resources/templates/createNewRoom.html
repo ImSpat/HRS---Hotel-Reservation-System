@@ -2,24 +2,55 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Utwórz nowy pokoj</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" />
 </head>
 <body>
-<h2>Dodaj nowy pokój</h2>
-<form th:action="@{/rooms/create}" method="post">
-    <p>Numer pokoju: <input type="text" name="number" required/></p>
-    <p>Rozkład Lóżek:
-        <select name="bedsDesc">
-            <option value="2">Podwójne</option>
-            <option value="1">Pojedyncze</option>
-            <option value="2+2">Podwójne + Podwójne</option>
-            <option value="2+1">Podwójne + Pojedyncze</option>
-            <option value="2+1+1">Podwójne + Pojedyncze + Pojedyncze</option>
-            <option value="2+1+1+1">Podwójne + Pojedyncze + Pojedyncze + Pojedyncze</option>
-            <option value="1+1">Pojedyncze + Pojedyncze</option>
-        </select>
-    </p>
-    <p><input type="submit" value="Submit"/></p>
-</form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">HRS - Hotel Reservation System</a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Główna<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/guests">Goście</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rooms">Pokoje</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="p-3 text-center bg-light">
+    <h2 class="mb-3">Dodaj nowy pokój</h2>
+</div>
+
+<div class="container">
+    <form th:action="@{/rooms/create}" method="post">
+        <div class="form-group">
+            <label for="createnewroomnumber">Numer pokoju:</label>
+            <input type="text" name="number" required
+                   class="form-control" id="createnewroomnumber"/></p>
+        </div>
+
+        <div class="form-group">
+            <label for="createnewroombeds">Rozkład Lóżek:</label>
+            <select name="bedsDesc" class="form-control" id="createnewroombeds">
+                <option value="2">Podwójne</option>
+                <option value="1">Pojedyncze</option>
+                <option value="2+2">Podwójne + Podwójne</option>
+                <option value="2+1">Podwójne + Pojedyncze</option>
+                <option value="2+1+1">Podwójne + Pojedyncze + Pojedyncze</option>
+                <option value="2+1+1+1">Podwójne + Pojedyncze + Pojedyncze + Pojedyncze</option>
+                <option value="1+1">Pojedyncze + Pojedyncze</option>
+            </select>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Utwórz pokój" />
+    </form>
+</div>
 </body>
 </html>
