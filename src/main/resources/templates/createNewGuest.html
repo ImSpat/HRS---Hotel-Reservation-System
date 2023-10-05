@@ -2,9 +2,9 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Utwórz nowego gościa</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css"/>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -41,7 +41,7 @@
         <div class="form-group">
             <label for="createnewguestfirstname">Imię:</label>
             <input type="text" name="firstName" required
-                   class="form-control" id="createnewguestfirstname" />
+                   class="form-control" id="createnewguestfirstname"/>
         </div>
 
         <div class="form-group">
@@ -62,8 +62,14 @@
                 <option value="FEMALE">Kobieta</option>
             </select>
         </div>
-        <input type="submit" class="btn btn-primary" value="Utwórz gościa" />
+        <input type="submit" class="btn btn-primary" value="Utwórz gościa"/>
     </form>
+    <div th:if="${not #lists.isEmpty(errors)}">
+        <h3>Błąd przy tworzeniu gościa</h3>
+        <ul>
+            <li th:each="error : ${errors}"><span th:text="${error.defaultMessage}"></span></li>
+        </ul>
+    </div>
 </div>
 </body>
 </html>
