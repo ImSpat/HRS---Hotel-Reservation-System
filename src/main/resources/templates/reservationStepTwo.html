@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HRS - pokoje do rezerwacji</title>
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">HRS - Hotel Reservation System</a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Główna<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/guests">Goście</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rooms">Pokoje</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/reservations">Rezerwacje</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/reservations/create/stepone">Utwórz rezerwacje</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="p-3 text-center bg-light">
+    <h2 class="mb-3">Lista dostępnych pokoi</h2>
+</div>
+<div class="container">
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Numer</th>
+            <th>Rozmiar</th>
+            <th>Opis</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="room : ${rooms}">
+            <td th:text="${room.number}"/>
+            <td th:text="${room.size}"/>
+            <td>Bardzo fajny pokój</td>
+            <td>
+                <form method="POST" th:action="@{/reservations/create/stepthree}">
+                    <input type="hidden" name="roomId" id="roomId" th:value="${room.id}"/>
+                    <input type="hidden" name="fromDate" id="fromDate" th:value="${fromDate}"/>
+                    <input type="hidden" name="toDate" id="toDate" th:value="${toDate}"/>
+
+                    <button type="submit" class="btn btn-primary">
+                        Zarezerwuj
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
