@@ -1,8 +1,10 @@
-<html
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>HRS</title>
+    <meta charset="UTF-8">
+    <title>HRS - rezerwacje</title>
     <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" />
 </head>
@@ -31,11 +33,29 @@
         </ul>
     </div>
 </nav>
-
 <div class="p-3 text-center bg-light">
-    <h2 class="mb-3">Panel zarządzania</h2>
+    <h2 class="mb-3">Lista Rezerwacji</h2>
 </div>
+<div class="container">
 
-<div class="container"></div>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Od</th>
+            <th>Do</th>
+            <th>Pokój</th>
+            <th>Właściciel</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reservation : ${reservations}">
+            <td th:text="${reservation.fromDate}"/>
+            <td th:text="${reservation.toDate}"/>
+            <td th:text="${reservation.room.number}"/>
+            <td th:text="|${reservation.owner.firstName} ${reservation.owner.lastName}|"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
