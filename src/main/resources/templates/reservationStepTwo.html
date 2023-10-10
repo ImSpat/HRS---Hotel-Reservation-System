@@ -57,6 +57,7 @@
                     <input type="hidden" name="roomId" id="roomId" th:value="${room.id}"/>
                     <input type="hidden" name="fromDate" id="fromDate" th:value="${fromDate}"/>
                     <input type="hidden" name="toDate" id="toDate" th:value="${toDate}"/>
+                    <input type="hidden" name="email" id="email" th:value="${email}"/>
 
                     <button type="submit" class="btn btn-primary">
                         Zarezerwuj
@@ -66,6 +67,9 @@
         </tr>
         </tbody>
     </table>
+    <div th:if="${#lists.isEmpty(rooms)}">
+        <h3 style="text-align: center">Brak wolnych pokoi w tym terminie</h3>
+    </div>
 </div>
 </body>
 </html>
