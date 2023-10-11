@@ -4,6 +4,7 @@ import com.example.HRS.domain.room.Room;
 import com.example.HRS.domain.room.RoomService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ public class ReservationServiceTest {
         //given
         ReservationRepository reservationRepository = Mockito.mock(ReservationRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
-        ReservationService reservationService = new ReservationService(reservationRepository, roomService);
+        ApplicationEventPublisher publisher = Mockito.mock(ApplicationEventPublisher.class);
+        ReservationService reservationService = new ReservationService(reservationRepository, roomService, publisher);
 
         //when then
         assertThrows(IllegalArgumentException.class,
@@ -37,7 +39,8 @@ public class ReservationServiceTest {
         //given
         ReservationRepository reservationRepository = Mockito.mock(ReservationRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
-        ReservationService reservationService = new ReservationService(reservationRepository, roomService);
+        ApplicationEventPublisher publisher = Mockito.mock(ApplicationEventPublisher.class);
+        ReservationService reservationService = new ReservationService(reservationRepository, roomService, publisher);
 
         //when then
         assertThrows(IllegalArgumentException.class,
@@ -54,7 +57,8 @@ public class ReservationServiceTest {
         //given
         ReservationRepository reservationRepository = Mockito.mock(ReservationRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
-        ReservationService reservationService = new ReservationService(reservationRepository, roomService);
+        ApplicationEventPublisher publisher = Mockito.mock(ApplicationEventPublisher.class);
+        ReservationService reservationService = new ReservationService(reservationRepository, roomService, publisher);
 
         //when then
         assertThrows(IllegalArgumentException.class,
@@ -71,7 +75,8 @@ public class ReservationServiceTest {
         //given
         ReservationRepository reservationRepository = Mockito.mock(ReservationRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
-        ReservationService reservationService = new ReservationService(reservationRepository, roomService);
+        ApplicationEventPublisher publisher = Mockito.mock(ApplicationEventPublisher.class);
+        ReservationService reservationService = new ReservationService(reservationRepository, roomService, publisher);
 
         //when then
         assertThrows(IllegalArgumentException.class,
@@ -345,7 +350,8 @@ public class ReservationServiceTest {
         //given
         ReservationRepository reservationRepository = Mockito.mock(ReservationRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
-        ReservationService reservationService = new ReservationService(reservationRepository, roomService);
+        ApplicationEventPublisher publisher = Mockito.mock(ApplicationEventPublisher.class);
+        ReservationService reservationService = new ReservationService(reservationRepository, roomService, publisher);
 
         List<Reservation> reservations = new ArrayList<>();
 
@@ -377,7 +383,8 @@ public class ReservationServiceTest {
         //given
         ReservationRepository reservationRepository = Mockito.mock(ReservationRepository.class);
         RoomService roomService = Mockito.mock(RoomService.class);
-        ReservationService reservationService = new ReservationService(reservationRepository, roomService);
+        ApplicationEventPublisher publisher = Mockito.mock(ApplicationEventPublisher.class);
+        ReservationService reservationService = new ReservationService(reservationRepository, roomService, publisher);
 
         List<Reservation> reservations = new ArrayList<>();
 

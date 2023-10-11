@@ -1,8 +1,10 @@
 package com.example.HRS.domain.reservation;
 
+import com.example.HRS.domain.reservation.events.TempReservationCreatedEvent;
 import com.example.HRS.domain.room.Room;
 import com.example.HRS.domain.room.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -17,11 +19,13 @@ public class ReservationService {
 
     private ReservationRepository repository;
     private RoomService roomService;
+    private ApplicationEventPublisher publisher;
 
     @Autowired
-    public ReservationService(ReservationRepository repository, RoomService roomService) {
+    public ReservationService(ReservationRepository repository, RoomService roomService, ApplicationEventPublisher publisher) {
         this.repository = repository;
         this.roomService = roomService;
+        this.publisher = publisher;
     }
 
     public List<Reservation> getAll() {
@@ -97,6 +101,9 @@ public class ReservationService {
         room.ifPresent(r -> {
             Reservation temporaryReservation = new Reservation(fromDate, toDate, r, email);
             this.repository.save(temporaryReservation);
+            TempReservationCreatedEvent event = new TempReservationCreatedEvent(this, email, r.getId());
+            publisher.publishEvent(event);
+            System.out.println("UDAŁO SIĘ UTWORZYĆ REZERWACJE");
         });
         return room.isPresent();
     }
