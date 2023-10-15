@@ -5,6 +5,7 @@ import com.example.HRS.controllers.dto.GuestUpdateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -43,5 +44,11 @@ public class GuestService {
                 updatedGuest.getGender()
         );
         this.repository.save(guestById);
+    }
+
+    public Guest createNewGuest(String firstName, String lastName, LocalDate dateOfBirth) {
+        Guest newGuest = new Guest(firstName, lastName, dateOfBirth);
+        this.repository.save(newGuest);
+        return newGuest;
     }
 }

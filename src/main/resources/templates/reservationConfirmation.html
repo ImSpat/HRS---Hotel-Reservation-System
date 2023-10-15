@@ -11,19 +11,34 @@
 <body>
 
 <div class="container">
-
     <div th:if="${success}">
         <h2>Dziękujemy za potwierdzenie rezerwacji.</h2>
-        <h3>Do zobaczenia!</h3>
+        <h3>Musisz wypełnić dane rezerwującego:</h3>
+        <form th:action="@{/guests/createAndAttachToReservation}" method="post">
+            <div class="form-group">
+                <label for="createnewguestfirstname">Imię:</label>
+                <input type="text" name="firstName" required
+                       class="form-control" id="createnewguestfirstname" />
+            </div>
+            <div class="form-group">
+                <label for="createnewguestlastname">Nazwisko:</label>
+                <input type="text" name="lastName" required
+                       class="form-control" id="createnewguestlastname"/>
+            </div>
+            <div class="form-group">
+                <label for="createnewguestdateofbirth">Data urodzenia:</label>
+                <input type="date" name="dateOfBirth"
+                       class="form-control" id="createnewguestdateofbirth"/>
+            </div>
+            <input type="hidden" name="reservationId" th:value="${reservationId}"/>
+            <input type="submit" class="btn btn-primary" value="Utwórz rezerwację" />
+        </form>
     </div>
-
     <div th:if="${!success}">
         <h2>Nie udało się potwierdzić rezerwacji.</h2>
         <h3>Proszę skontaktuj się z hotelem i powołaj się na rezerwację numer:
             <span th:text="${reservationId}">id</span></h3>
     </div>
-
-
 </div>
 </body>
 </html>

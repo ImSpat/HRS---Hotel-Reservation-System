@@ -4,8 +4,10 @@ import com.example.HRS.controllers.dto.GuestCreationDTO;
 import com.example.HRS.controllers.dto.GuestUpdateDTO;
 import com.example.HRS.domain.guest.Guest;
 import com.example.HRS.domain.guest.GuestService;
+import com.example.HRS.domain.reservation.ReservationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,15 +16,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
+
 @Controller
 @RequestMapping("/guests")
 public class GuestController {
 
     private GuestService guestService;
+    private ReservationService reservationService;
 
     @Autowired
-    public GuestController(GuestService guestService) {
+    public GuestController(GuestService guestService, ReservationService reservationService) {
         this.guestService = guestService;
+        this.reservationService = reservationService;
     }
 
     @GetMapping
@@ -63,5 +69,14 @@ public class GuestController {
     public String editGuest(GuestUpdateDTO updatedGuest) {
         this.guestService.update(updatedGuest);
         return "redirect:/guests";
+    }
+
+    @PostMapping("/createAndAttachToReservation")
+    public String createAndAttachToReservation(String firstName, String lastName,
+                                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateOfBirth,
+                                               long reservationId) {
+        Guest guest = this.guestService.createNewGuest(firstName, lastName, dateOfBirth);
+        this.reservationService.attachGuestToReservation(guest, reservationId);
+        return "thankYouPage";
     }
 }

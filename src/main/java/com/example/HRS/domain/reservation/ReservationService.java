@@ -1,5 +1,6 @@
 package com.example.HRS.domain.reservation;
 
+import com.example.HRS.domain.guest.Guest;
 import com.example.HRS.domain.reservation.events.TempReservationCreatedEvent;
 import com.example.HRS.domain.room.Room;
 import com.example.HRS.domain.room.RoomService;
@@ -130,5 +131,13 @@ public class ReservationService {
                 .filter(reservation -> reservation.getCreationDate().plusMinutes(60)
                         .isBefore(LocalDateTime.now()))
                 .forEach(reservation -> this.repository.deleteById(reservation.getId()));
+    }
+
+    public void attachGuestToReservation(Guest guest, long reservationId) {
+        Optional<Reservation> byId = this.repository.findById(reservationId);
+        if (byId.isPresent()) {
+            byId.get().setOwner(guest);
+            this.repository.save(byId.get());
+        }
     }
 }

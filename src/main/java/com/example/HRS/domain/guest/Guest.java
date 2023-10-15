@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Data
 @Setter(value = AccessLevel.NONE)
@@ -24,13 +23,20 @@ public class Guest {
     private LocalDate birthDate;
     private Gender gender;
 
-    public Guest(){}
+    public Guest() {
+    }
 
     public Guest(String firstName, String lastName, LocalDate birthDate, Gender gender) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.gender = gender;
+    }
+
+    public Guest(String firstName, String lastName, LocalDate dateOfBirth) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = dateOfBirth;
     }
 
     public void update(String firstName, String lastName, LocalDate birthDate, Gender gender) {
