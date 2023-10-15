@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -101,10 +102,33 @@ public class ReservationService {
         room.ifPresent(r -> {
             Reservation temporaryReservation = new Reservation(fromDate, toDate, r, email);
             this.repository.save(temporaryReservation);
-            TempReservationCreatedEvent event = new TempReservationCreatedEvent(this, email, r.getId());
+            TempReservationCreatedEvent event = new TempReservationCreatedEvent(this, email, temporaryReservation.getId());
             publisher.publishEvent(event);
             System.out.println("UDAŁO SIĘ UTWORZYĆ REZERWACJE");
         });
         return room.isPresent();
+    }
+
+    public boolean confirmReservation(long reservationId) {
+        Optional<Reservation> byId = this.repository.findById(reservationId);
+        if (byId.isPresent()) {
+            byId.get().confirm();
+            this.repository.save(byId.get());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void removeById(long id) {
+        this.repository.deleteById(id);
+    }
+
+    public void removeUnconfirmedReservations() {
+        this.repository.findAll().stream()
+                .filter(reservation -> !reservation.isConfirmed())
+                .filter(reservation -> reservation.getCreationDate().plusMinutes(60)
+                        .isBefore(LocalDateTime.now()))
+                .forEach(reservation -> this.repository.deleteById(reservation.getId()));
     }
 }
