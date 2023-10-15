@@ -45,6 +45,7 @@
             <th>Do</th>
             <th>Pokój</th>
             <th>Właściciel</th>
+            <th>Potwierdzona</th>
         </tr>
         </thead>
         <tbody>
@@ -53,6 +54,10 @@
             <td th:text="${reservation.toDate}"/>
             <td th:text="${reservation.room.number}"/>
             <td th:text="|${reservation.owner?.firstName} ${reservation.owner?.lastName}|"/>
+            <td><span th:if="${reservation.confirmed}">Tak</span><span th:if="${!reservation.confirmed}">Nie</span></td>
+            <td>
+                <a th:href="@{/reservations/delete/{id}(id=${reservation.id})}">Usuń</a>
+            </td>
         </tr>
         </tbody>
     </table>
