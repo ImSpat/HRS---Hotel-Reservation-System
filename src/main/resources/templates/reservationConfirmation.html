@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HRS - potwierdzenie rezerwacji</title>
+    <script src="/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" />
+</head>
+<body>
+
+<div class="container">
+
+    <div th:if="${success}">
+        <h2>Dziękujemy za potwierdzenie rezerwacji.</h2>
+        <h3>Do zobaczenia!</h3>
+    </div>
+
+    <div th:if="${!success}">
+        <h2>Nie udało się potwierdzić rezerwacji.</h2>
+        <h3>Proszę skontaktuj się z hotelem i powołaj się na rezerwację numer:
+            <span th:text="${reservationId}">id</span></h3>
+    </div>
+
+
+</div>
+</body>
+</html>
