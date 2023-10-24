@@ -55,7 +55,7 @@ public class RoomControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/rooms"));
 
-        Mockito.verify(roomService, Mockito.times(1)).createNewRoom("139", "2+1");
+        Mockito.verify(roomService, Mockito.times(1)).createNewRoom("139", "2+1", null, null);
     }
 
     @Test
@@ -92,6 +92,6 @@ public class RoomControllerTest {
         mockMvc.perform(request)
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/rooms"));
-        Mockito.verify(roomService, Mockito.times(1)).update(21, "139", "2+1");
+        Mockito.verify(roomService, Mockito.times(1)).update(21, "139", "2+1", null, null);
     }
 }

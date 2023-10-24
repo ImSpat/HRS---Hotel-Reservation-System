@@ -1,7 +1,7 @@
 package com.example.HRS.domain.guest;
 
-import com.example.HRS.controllers.dto.GuestCreationDTO;
-import com.example.HRS.controllers.dto.GuestUpdateDTO;
+import com.example.HRS.domain.guest.dto.GuestCreationDTO;
+import com.example.HRS.domain.guest.dto.GuestUpdateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

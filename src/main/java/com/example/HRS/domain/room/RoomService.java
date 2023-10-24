@@ -23,7 +23,7 @@ public class RoomService {
         return repository.findAll();
     }
 
-    public Room createNewRoom(String roomNumber, String bedsDesc) {
+    public Room createNewRoom(String roomNumber, String bedsDesc, String description, List<String> photosUrls) {
         List<BedType> beds = getBedTypesList(bedsDesc);
         Room newRoom = new Room(roomNumber, beds);
         return this.repository.save(newRoom);
@@ -37,10 +37,10 @@ public class RoomService {
         return this.repository.getReferenceById(id);
     }
 
-    public void update(long id, String number, String bedsDesc) {
+    public void update(long id, String number, String bedsDesc, String description, List<String> photosUrls) {
         Room toUpdate = this.repository.getById(id);
         List<BedType> beds = getBedTypesList(bedsDesc);
-        toUpdate.update(number, beds);
+        toUpdate.update(number, beds, description, photosUrls);
         this.repository.save(toUpdate);
     }
 

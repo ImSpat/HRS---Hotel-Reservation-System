@@ -1,6 +1,6 @@
 package com.example.HRS.controllers.api;
 
-import com.example.HRS.controllers.dto.AvailableRoomDTO;
+import com.example.HRS.domain.room.dto.RoomAvailableDTO;
 import com.example.HRS.domain.reservation.ReservationService;
 import com.example.HRS.domain.room.Room;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,8 +56,8 @@ public class RestRoomControllerTest {
         //then
         MockHttpServletResponse response = result.getResponse();
 
-        CollectionType constructedCollectionType = mapper.getTypeFactory().constructCollectionType(List.class, AvailableRoomDTO.class);
-        List<AvailableRoomDTO> results = mapper.readValue(response.getContentAsString(), constructedCollectionType);
+        CollectionType constructedCollectionType = mapper.getTypeFactory().constructCollectionType(List.class, RoomAvailableDTO.class);
+        List<RoomAvailableDTO> results = mapper.readValue(response.getContentAsString(), constructedCollectionType);
 
         assertTrue(response.getStatus() == HttpStatus.OK.value());
         assertTrue(response.getContentType().equals("application/json"));

@@ -1,5 +1,7 @@
 package com.example.HRS.controllers;
 
+import com.example.HRS.domain.room.dto.RoomCreateDTO;
+import com.example.HRS.domain.room.dto.RoomUpdateDTO;
 import com.example.HRS.domain.room.Room;
 import com.example.HRS.domain.room.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +34,8 @@ public class RoomController {
     }
 
     @PostMapping("/create")
-    public String handleCreateNewRoom(String number, String bedsDesc) {
-        this.roomService.createNewRoom(number, bedsDesc);
+    public String handleCreateNewRoom(RoomCreateDTO dto) {
+        this.roomService.createNewRoom(dto.number(), dto.bedsDesc(), dto.description(), dto.photosUrls());
         return "redirect:/rooms";
     }
 
@@ -52,8 +54,8 @@ public class RoomController {
     }
 
     @PostMapping("/edit")
-    public String editRoom(long id, String number, String bedsDesc) {
-        this.roomService.update(id, number, bedsDesc);
+    public String editRoom(RoomUpdateDTO dto) {
+        this.roomService.update(dto.id(), dto.number(), dto.bedsDesc(), dto.description(), dto.photosUrls());
         return "redirect:/rooms";
     }
 }

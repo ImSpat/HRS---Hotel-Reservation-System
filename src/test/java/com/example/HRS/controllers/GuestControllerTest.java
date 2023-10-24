@@ -1,9 +1,10 @@
 package com.example.HRS.controllers;
 
-import com.example.HRS.controllers.dto.GuestCreationDTO;
+import com.example.HRS.domain.guest.dto.GuestCreationDTO;
 import com.example.HRS.domain.guest.Gender;
 import com.example.HRS.domain.guest.Guest;
 import com.example.HRS.domain.guest.GuestService;
+import com.example.HRS.domain.reservation.ReservationService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class GuestControllerTest {
 
     @MockBean
     private GuestService guestService;
+
+    @MockBean
+    private ReservationService reservationService;
 
     @Test
     public void basic() throws Exception {

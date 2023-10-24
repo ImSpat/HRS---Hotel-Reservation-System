@@ -1,7 +1,7 @@
 package com.example.HRS.controllers;
 
-import com.example.HRS.controllers.dto.GuestCreationDTO;
-import com.example.HRS.controllers.dto.GuestUpdateDTO;
+import com.example.HRS.domain.guest.dto.GuestCreationDTO;
+import com.example.HRS.domain.guest.dto.GuestUpdateDTO;
 import com.example.HRS.domain.guest.Guest;
 import com.example.HRS.domain.guest.GuestService;
 import com.example.HRS.domain.reservation.ReservationService;

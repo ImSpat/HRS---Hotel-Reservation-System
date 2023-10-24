@@ -58,6 +58,47 @@
             </select>
         </div>
 
+        <div class="form-group">
+            <label for="createnewroomdescription">Opis pokoju:</label>
+            <textarea type="text" name="description" th:value="${room.description}"
+                      class="form-control" id="createnewroomdescription"></textarea></p>
+        </div>
+
+        <div th:if="${not #lists.isEmpty(room.photosUrls)}">
+            <div class="form-group">
+                <label for="createnewroomphotosurls1">URL zdjęcia:</label>
+                <input type="text" name="photosUrls" th:value="${room.photosUrls[0]}"
+                       class="form-control" id="createnewroomphotosurls1"/></p>
+            </div>
+            <div class="form-group">
+                <label for="createnewroomphotosurls2">URL zdjęcia::</label>
+                <input type="text" name="photosUrls" th:value="${room.photosUrls[1]}"
+                       class="form-control" id="createnewroomphotosurls2"/></p>
+            </div>
+            <div class="form-group">
+                <label for="createnewroomphotosurls3">URL zdjęcia::</label>
+                <input type="text" name="photosUrls" th:value="${room.photosUrls[2]}"
+                       class="form-control" id="createnewroomphotosurls3"/></p>
+            </div>
+        </div>
+        <div th:if="${#lists.isEmpty(room.photosUrls)}">
+            <div class="form-group">
+                <label for="createnewroomphotosurls11">URL zdjęcia:</label>
+                <input type="text" name="photosUrls"
+                       class="form-control" id="createnewroomphotosurls11"/></p>
+            </div>
+            <div class="form-group">
+                <label for="createnewroomphotosurls22">URL zdjęcia::</label>
+                <input type="text" name="photosUrls"
+                       class="form-control" id="createnewroomphotosurls22"/></p>
+            </div>
+            <div class="form-group">
+                <label for="createnewroomphotosurls33">URL zdjęcia::</label>
+                <input type="text" name="photosUrls"
+                       class="form-control" id="createnewroomphotosurls33"/></p>
+            </div>
+        </div>
+
         <input type="submit" class="btn btn-primary" value="Edytuj pokój" />
     </form>
 </div>

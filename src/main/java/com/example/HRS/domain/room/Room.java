@@ -20,6 +20,11 @@ public class Room {
     @ElementCollection(targetClass = BedType.class)
     private List<BedType> beds;
     private int size;
+    private String description;
+    @ElementCollection(targetClass = String.class)
+    private List<String> photosUrls;
+
+    public Room() {}
 
     public Room(String number, List<BedType> beds) {
         if (beds == null) {
@@ -31,7 +36,11 @@ public class Room {
         updateBeds();
     }
 
-    public Room() {}
+    public Room(String number, List<BedType> beds, String description, List<String> photosUrls) {
+        this(number, beds);
+        this.description = description;
+        this.photosUrls = photosUrls;
+    }
 
     public String getBedsAsStr() {
         String bedAsStr = this.beds.stream()
@@ -56,6 +65,12 @@ public class Room {
         this.number = number;
         this.beds = beds;
         updateBeds();
+    }
+
+    public void update(String number, List<BedType> beds, String description, List<String> photosUrls) {
+        this.description = description;
+        this.photosUrls = photosUrls;
+        this.update(number, beds);
     }
 
     private void updateBeds() {

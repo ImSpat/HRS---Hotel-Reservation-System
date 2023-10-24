@@ -1,6 +1,6 @@
 package com.example.HRS.controllers.api;
 
-import com.example.HRS.controllers.dto.AvailableRoomDTO;
+import com.example.HRS.domain.room.dto.RoomAvailableDTO;
 import com.example.HRS.domain.reservation.ReservationService;
 import com.example.HRS.domain.room.Room;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +25,14 @@ public class RestRoomController {
     }
 
     @GetMapping("api/getFreeRooms")
-    public List<AvailableRoomDTO> getAvailableRooms(
+    public List<RoomAvailableDTO> getAvailableRooms(
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
             int size
     ) {
         try {
             List<Room> result = reservationService.getAvailableRooms(from, to, size);
-            return result.stream().map(AvailableRoomDTO::new).collect(Collectors.toList());
+            return result.stream().map(RoomAvailableDTO::new).collect(Collectors.toList());
         } catch (IllegalArgumentException ex) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage(), ex);
         }

@@ -22,7 +22,7 @@ public class RoomServiceTest {
         Room room = new Room("102", bedTypes);
 
         //when
-        roomService.createNewRoom("102", "2+1+1");
+        roomService.createNewRoom("102", "2+1+1", "", null);
 
         //then
         Mockito.verify(roomRepository).save(roomCaptor.capture());

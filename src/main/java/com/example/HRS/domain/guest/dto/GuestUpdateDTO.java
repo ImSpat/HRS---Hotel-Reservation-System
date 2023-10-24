@@ -1,4 +1,4 @@
-package com.example.HRS.controllers.dto;
+package com.example.HRS.domain.guest.dto;
 
 import com.example.HRS.domain.guest.Gender;
 import lombok.Data;
