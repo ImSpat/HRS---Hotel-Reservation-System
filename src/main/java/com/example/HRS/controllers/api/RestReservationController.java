@@ -22,7 +22,7 @@ public class RestReservationController {
     }
 
     @PostMapping("api/createTemporaryReservation")
-    public ResponseEntity createTempReservation(@Valid @RequestBody ReservationCreateTempResDTO payload) {
+    public ResponseEntity<?> createTempReservation(@Valid @RequestBody ReservationCreateTempResDTO payload) {
         boolean result = this.reservationService.createTemporaryReservation(payload.roomId(), payload.fromDate(), payload.toDate(), payload.email());
 
         if (!result) {
