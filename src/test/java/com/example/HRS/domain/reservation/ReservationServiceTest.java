@@ -9,7 +9,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -109,7 +108,7 @@ public class ReservationServiceTest {
                 .toList();
 
         //then
-        assertEquals(1,collected.size());
+        assertEquals(1, collected.size());
     }
 
     @Test
@@ -134,7 +133,7 @@ public class ReservationServiceTest {
                 .toList();
 
         //then
-        assertEquals(0,collected.size());
+        assertEquals(0, collected.size());
 
     }
 
@@ -160,7 +159,7 @@ public class ReservationServiceTest {
                 .toList();
 
         //then
-        assertEquals(1,collected.size());
+        assertEquals(1, collected.size());
     }
 
     @Test
@@ -185,7 +184,7 @@ public class ReservationServiceTest {
                 .toList();
 
         //then
-        assertEquals(0,collected.size());
+        assertEquals(0, collected.size());
 
     }
 
@@ -212,7 +211,7 @@ public class ReservationServiceTest {
                 .toList();
 
         //then
-        assertEquals(1,collected.size());
+        assertEquals(1, collected.size());
     }
 
     @Test
@@ -238,7 +237,7 @@ public class ReservationServiceTest {
                 .toList();
 
         //then
-        assertEquals(0,collected.size());
+        assertEquals(0, collected.size());
     }
 
     @Test
@@ -264,7 +263,7 @@ public class ReservationServiceTest {
                 .toList();
 
         //then
-        assertEquals(1,collected.size());
+        assertEquals(1, collected.size());
     }
 
     @Test
@@ -290,7 +289,7 @@ public class ReservationServiceTest {
                 .toList();
 
         //then
-        assertEquals(0,collected.size());
+        assertEquals(0, collected.size());
     }
 
     @Test
@@ -316,7 +315,7 @@ public class ReservationServiceTest {
                 .toList();
 
         //then
-        assertEquals(1,collected.size());
+        assertEquals(1, collected.size());
     }
 
     @Test
@@ -342,7 +341,7 @@ public class ReservationServiceTest {
                 .toList();
 
         //then
-        assertEquals(0,collected.size());
+        assertEquals(0, collected.size());
     }
 
     @Test

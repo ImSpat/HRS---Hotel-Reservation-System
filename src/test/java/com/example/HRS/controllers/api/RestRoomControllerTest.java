@@ -1,8 +1,9 @@
 package com.example.HRS.controllers.api;
 
-import com.example.HRS.domain.room.dto.RoomAvailableDTO;
 import com.example.HRS.domain.reservation.ReservationService;
 import com.example.HRS.domain.room.Room;
+import com.example.HRS.domain.room.RoomService;
+import com.example.HRS.domain.room.dto.RoomAvailableDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import org.junit.jupiter.api.Test;
@@ -33,6 +34,9 @@ public class RestRoomControllerTest {
 
     @MockBean
     private ReservationService reservationService;
+
+    @MockBean
+    private RoomService roomService;
 
     @Autowired
     private ObjectMapper mapper;

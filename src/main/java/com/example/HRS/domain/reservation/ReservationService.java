@@ -6,6 +6,7 @@ import com.example.HRS.domain.room.Room;
 import com.example.HRS.domain.room.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -24,7 +25,7 @@ public class ReservationService {
     private ApplicationEventPublisher publisher;
 
     @Autowired
-    public ReservationService(ReservationRepository repository, RoomService roomService, ApplicationEventPublisher publisher) {
+    public ReservationService(ReservationRepository repository, @Lazy RoomService roomService, ApplicationEventPublisher publisher) {
         this.repository = repository;
         this.roomService = roomService;
         this.publisher = publisher;
