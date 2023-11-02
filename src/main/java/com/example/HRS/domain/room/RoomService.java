@@ -92,10 +92,7 @@ public class RoomService {
         if (size <= 0) {
             return new ArrayList<>();
         }
-        return this.roomRepository.findAll()
-                .stream()
-                .filter(room -> room.getSize() >= size)
-                .collect(Collectors.toList());
+        return this.roomRepository.findBySizeGreaterThanEqual(size);
     }
 
     public Optional<Room> getRoomById(long roomId) {
