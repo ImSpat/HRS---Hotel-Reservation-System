@@ -14,7 +14,7 @@ import java.util.Optional;
 public class Reservation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDate fromDate;
     private LocalDate toDate;
