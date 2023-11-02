@@ -5,6 +5,8 @@ import com.example.HRS.domain.room.Room;
 import com.example.HRS.domain.room.RoomService;
 import com.example.HRS.domain.room.dto.RoomAvailableDTO;
 import com.example.HRS.domain.room.dto.RoomCreateRestDTO;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -55,6 +57,8 @@ public class RestRoomController {
         return new ResponseEntity<>(newRoom, HttpStatus.CREATED);
     }
 
+    @ApiResponse(description = "OK", responseCode = "200")
+    @ApiResponse(description = "Forbidden, this room is reserved", responseCode = "403")
     @DeleteMapping("api/rooms/{id}")
     public ResponseEntity<?> deleteRoom(@PathVariable long id) {
         try {
