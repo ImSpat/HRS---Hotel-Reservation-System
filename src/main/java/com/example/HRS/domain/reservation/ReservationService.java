@@ -127,8 +127,7 @@ public class ReservationService {
     }
 
     public void removeUnconfirmedReservations() {
-        this.repository.findAll().stream()
-                .filter(reservation -> !reservation.isConfirmed())
+        this.repository.findByConfirmed(Boolean.FALSE).stream()
                 .filter(reservation -> reservation.getCreationDate().plusMinutes(60)
                         .isBefore(LocalDateTime.now()))
                 .forEach(reservation -> this.repository.deleteById(reservation.getId()));
