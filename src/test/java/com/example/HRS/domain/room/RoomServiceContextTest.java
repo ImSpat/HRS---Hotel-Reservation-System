@@ -18,7 +18,7 @@ public class RoomServiceContextTest {
 
     @Test
     @Sql("/create_test_data.sql")
-    public void testGetSize() {
+    public void testGetRoomsForEqualSize() {
         //when
         RoomService roomService = new RoomService(roomRepository, null);
         List<Room> result = roomService.getRoomsForSize(2);
@@ -29,7 +29,7 @@ public class RoomServiceContextTest {
 
     @Test
     @Sql("/create_test_data.sql")
-    public void testGetSize2() {
+    public void testGetRoomsForSize() {
         //when
         RoomService roomService = new RoomService(roomRepository, null);
         List<Room> result = roomService.getRoomsForSize(1);
