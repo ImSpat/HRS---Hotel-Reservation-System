@@ -94,9 +94,7 @@ public class ReservationService {
     }
 
     private List<Reservation> getAllReservationsForRoom(Room room) {
-        return this.repository.findAll()
-                .stream().filter(reservation -> reservation.getRoom().getId() == room.getId())
-                .collect(Collectors.toList());
+        return this.repository.findByRoom_Id(room.getId());
     }
 
     public boolean createTemporaryReservation(long roomId, LocalDate fromDate, LocalDate toDate, String email) {

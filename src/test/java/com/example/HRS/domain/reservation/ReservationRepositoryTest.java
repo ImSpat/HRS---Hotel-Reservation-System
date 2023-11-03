@@ -52,4 +52,27 @@ public class ReservationRepositoryTest {
         List<Reservation> result2 = this.reservationRepository.findByConfirmed(false);
         assertEquals("Kasia", result2.get(0).getOwner().getFirstName());
     }
+
+    @Test
+    public void getByRoom_Id() {
+        Room room1 = new Room("1", List.of(BedType.SINGLE));
+        Room room2 = new Room("2", List.of(BedType.DOUBLE));
+        this.roomRepository.save(room1);
+        this.roomRepository.save(room2);
+
+        Guest guest1 = new Guest("Jan", "Kowalski", LocalDate.now());
+        Guest guest2 = new Guest("Kasia", "Kowalski", LocalDate.now());
+        this.guestRepository.save(guest1);
+        this.guestRepository.save(guest2);
+
+        Reservation reservation1 = new Reservation(LocalDate.now(), LocalDate.now().plusDays(1), guest1, room1);
+        Reservation reservation2 = new Reservation(LocalDate.now(), LocalDate.now().plusDays(1), guest2, room2);
+        Reservation reservation3 = new Reservation(LocalDate.now(), LocalDate.now().plusDays(1), guest2, room2);
+        this.reservationRepository.save(reservation1);
+        this.reservationRepository.save(reservation2);
+        this.reservationRepository.save(reservation3);
+
+        List<Reservation> results = this.reservationRepository.findByRoom_Id(room2.getId());
+        assertEquals(2, results.size());
+    }
 }
