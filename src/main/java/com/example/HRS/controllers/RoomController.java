@@ -5,6 +5,7 @@ import com.example.HRS.domain.room.dto.RoomUpdateDTO;
 import com.example.HRS.domain.room.Room;
 import com.example.HRS.domain.room.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,12 +41,14 @@ public class RoomController {
     }
 
     @GetMapping("/delete/{id}")
+    @PreAuthorize(value = "hasRole('ROLE_MANAGER')")
     public String removeRoom(@PathVariable long id) {
         this.roomService.removeById(id);
         return "redirect:/rooms";
     }
 
     @GetMapping("/edit/{id}")
+    @PreAuthorize(value = "hasAnyRole('ROLE_MANAGER', 'ROLE_RECEPTION')")
     public String editRoom(@PathVariable long id, Model model) {
         Room room = this.roomService.findById(id);
         model.addAttribute("room", room);
@@ -54,6 +57,7 @@ public class RoomController {
     }
 
     @PostMapping("/edit")
+    @PreAuthorize(value = "hasRole('ROLE_MANAGER')")
     public String editRoom(RoomUpdateDTO dto) {
         this.roomService.update(dto.id(), dto.number(), dto.bedsDesc(), dto.description(), dto.photosUrls());
         return "redirect:/rooms";

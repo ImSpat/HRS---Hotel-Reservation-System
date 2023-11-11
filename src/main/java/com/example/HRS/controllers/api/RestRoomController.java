@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -31,6 +32,7 @@ public class RestRoomController {
     }
 
     @GetMapping("api/getFreeRooms")
+    @PreAuthorize("hasAnyRole('ROLE_MANAGER', 'ROLE_RECEPTION')")
     public List<RoomAvailableDTO> getAvailableRooms(
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
@@ -46,12 +48,14 @@ public class RestRoomController {
     }
 
     @GetMapping("api/rooms")
+    @PreAuthorize("hasAnyRole('ROLE_MANAGER', 'ROLE_RECEPTION')")
     public ResponseEntity<List<RoomAvailableDTO>> getAllRooms() {
         List<RoomAvailableDTO> rooms = this.roomService.findAll().stream().map(RoomAvailableDTO::new).toList();
         return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
 
     @PostMapping("api/rooms")
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     public ResponseEntity<Room> createRoom(@RequestBody RoomCreateRestDTO dto) {
         Room newRoom = this.roomService.createNewRoom(dto.roomNumber(), dto.beds(), dto.description(), dto.photosUrls());
         return new ResponseEntity<>(newRoom, HttpStatus.CREATED);
@@ -60,6 +64,7 @@ public class RestRoomController {
     @ApiResponse(description = "OK", responseCode = "200")
     @ApiResponse(description = "Forbidden, this room is reserved", responseCode = "403")
     @DeleteMapping("api/rooms/{id}")
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     public ResponseEntity<?> deleteRoom(@PathVariable long id) {
         try {
             this.roomService.removeById(id);
@@ -70,11 +75,13 @@ public class RestRoomController {
     }
 
     @PutMapping("api/rooms/{id}")
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     public void updateRoom(@PathVariable long id, @RequestBody RoomCreateRestDTO dto) {
         this.roomService.update(id, dto.roomNumber(), dto.beds(), dto.description(), dto.photosUrls());
     }
 
     @PatchMapping("api/rooms/{id}")
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     public void updateRoomByPatch(@PathVariable long id, @RequestBody RoomCreateRestDTO dto) {
         this.roomService.updateByPatch(id, dto.roomNumber(), dto.beds(), dto.description(), dto.photosUrls());
     }
