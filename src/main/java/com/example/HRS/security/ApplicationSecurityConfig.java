@@ -3,6 +3,7 @@ package com.example.HRS.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -31,17 +32,16 @@ public class ApplicationSecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+    public SecurityFilterChain apiFilterChain(HttpSecurity http, AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         AuthenticationManager authenticationManager = authenticationManagerBuilder.getOrBuild();
         http
-                .headers(headers -> headers.disable())
+                .securityMatcher("/api/**")
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilter(new CustomAuthenticationFilter(authenticationManager))
                 .addFilterBefore(new CustomAuthorizationFilter(), CustomAuthenticationFilter.class)
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers(toH2Console()).permitAll()
-                        .requestMatchers(antMatcher("/login"), antMatcher("/api/login/**"),
+                        .requestMatchers(antMatcher("/api/login/*"),
                                 antMatcher("/v3/api-docs/**"), antMatcher("/swagger-ui/**")).permitAll()
                         .anyRequest().authenticated()
                 );
@@ -49,9 +49,27 @@ public class ApplicationSecurityConfig {
     }
 
     @Bean
+    public SecurityFilterChain formLoginFilterChain(HttpSecurity http) throws Exception {
+        http
+                .headers(headers -> headers.disable())
+                .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers(toH2Console()).permitAll()
+                        .requestMatchers(antMatcher("/login"),
+                                antMatcher("/v3/api-docs/**"), antMatcher("/swagger-ui/**")).permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .permitAll()
+                        .defaultSuccessUrl("/", true)
+                ).logout(logout -> logout
+                        .logoutRequestMatcher(antMatcher(HttpMethod.GET, "/logout")));
+        return http.build();
+    }
+
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
-
 }
 
