@@ -7,16 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import java.time.LocalDate;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @WebMvcTest(ReservationController.class)
+@WithMockUser(username = "jankowalski", roles = {"MANAGER"} )
 public class ReservationControllerTest {
 
     @Autowired
@@ -37,7 +40,8 @@ public class ReservationControllerTest {
         MockHttpServletRequestBuilder request =
                 post("/reservations/create/steptwo")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                        .content(postContent);
+                        .content(postContent)
+                        .with(csrf());
 
         mockMvc.perform(request)
                 .andExpect(view().name("reservationStepTwo"))
@@ -60,7 +64,8 @@ public class ReservationControllerTest {
         MockHttpServletRequestBuilder request =
                 post("/reservations/create/steptwo")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                        .content(postContent);
+                        .content(postContent)
+                        .with(csrf());
 
         mockMvc.perform(request)
                 .andExpect(view().name("reservationStepOne"))
@@ -81,7 +86,8 @@ public class ReservationControllerTest {
         MockHttpServletRequestBuilder request =
                 post("/reservations/create/steptwo")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                        .content(postContent);
+                        .content(postContent)
+                        .with(csrf());
 
         mockMvc.perform(request)
                 .andExpect(view().name("reservationStepOne"))
