@@ -1,9 +1,9 @@
 package com.example.HRS.controllers;
 
-import com.example.HRS.domain.room.dto.RoomCreateDTO;
-import com.example.HRS.domain.room.dto.RoomUpdateDTO;
 import com.example.HRS.domain.room.Room;
 import com.example.HRS.domain.room.RoomService;
+import com.example.HRS.domain.room.dto.RoomCreateDTO;
+import com.example.HRS.domain.room.dto.RoomUpdateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/rooms")
 public class RoomController {
-    private RoomService roomService;
+    private final RoomService roomService;
 
     @Autowired
     public RoomController(RoomService roomService) {

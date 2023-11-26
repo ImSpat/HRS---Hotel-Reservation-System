@@ -24,7 +24,7 @@ import static org.springframework.security.web.util.matcher.AntPathRequestMatche
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ApplicationSecurityConfig {
 
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
     public ApplicationSecurityConfig(UserDetailsService userDetailsService) {

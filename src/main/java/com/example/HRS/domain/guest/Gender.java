@@ -6,7 +6,7 @@ public enum Gender {
     private final String gender;
 
     Gender(String gender) {
-        this.gender=gender;
+        this.gender = gender;
     }
 
     @Override

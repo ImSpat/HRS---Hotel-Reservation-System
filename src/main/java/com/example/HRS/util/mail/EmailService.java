@@ -17,12 +17,13 @@ public class EmailService {
     private String domain;
     @Value("${hrs.port}")
     private String port;
-    private String confirmationEndpoint = "reservations/confirm";
+    private final String confirmationEndpoint = "reservations/confirm";
 
     @Autowired
     public EmailService(JavaMailSender sender) {
         this.sender = sender;
     }
+
     public void sendConfirmationEmail(String email, long reservationId) {
 
         SimpleMailMessage mail = new SimpleMailMessage();

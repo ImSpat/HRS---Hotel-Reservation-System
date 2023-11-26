@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -29,11 +28,13 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @Slf4j
 public class TokenController {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
     @Autowired
     public TokenController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     @GetMapping("api/refreshtoken")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(AUTHORIZATION);

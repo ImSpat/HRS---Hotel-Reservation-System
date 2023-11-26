@@ -1,9 +1,9 @@
 package com.example.HRS.controllers;
 
-import com.example.HRS.domain.guest.dto.GuestCreationDTO;
-import com.example.HRS.domain.guest.dto.GuestUpdateDTO;
 import com.example.HRS.domain.guest.Guest;
 import com.example.HRS.domain.guest.GuestService;
+import com.example.HRS.domain.guest.dto.GuestCreationDTO;
+import com.example.HRS.domain.guest.dto.GuestUpdateDTO;
 import com.example.HRS.domain.reservation.ReservationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,8 @@ import java.time.LocalDate;
 @RequestMapping("/guests")
 public class GuestController {
 
-    private GuestService guestService;
-    private ReservationService reservationService;
+    private final GuestService guestService;
+    private final ReservationService reservationService;
 
     @Autowired
     public GuestController(GuestService guestService, ReservationService reservationService) {

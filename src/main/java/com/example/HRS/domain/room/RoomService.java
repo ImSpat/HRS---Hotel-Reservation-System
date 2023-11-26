@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class RoomService {
-    private RoomRepository roomRepository;
-    private ReservationService reservationService;
+    private final RoomRepository roomRepository;
+    private final ReservationService reservationService;
 
     @Autowired
     public RoomService(RoomRepository roomRepository, ReservationService reservationService) {
@@ -69,19 +69,19 @@ public class RoomService {
         Room toUpdate = this.roomRepository.getReferenceById(id);
 
         String newNumber = toUpdate.getNumber();
-        if(roomNumber!=null) {
+        if (roomNumber != null) {
             newNumber = roomNumber;
         }
         List<BedType> newBeds = toUpdate.getBeds();
-        if(beds!=null) {
+        if (beds != null) {
             newBeds = beds;
         }
         String newDescription = toUpdate.getDescription();
-        if(description!=null) {
+        if (description != null) {
             newDescription = description;
         }
         List<String> newPhotosUrls = toUpdate.getPhotosUrls();
-        if(photosUrls!=null) {
+        if (photosUrls != null) {
             newPhotosUrls = photosUrls;
         }
         toUpdate.update(newNumber, newBeds, newDescription, newPhotosUrls);

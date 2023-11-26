@@ -5,7 +5,6 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -24,7 +23,8 @@ public class Room {
     @ElementCollection(targetClass = String.class)
     private List<String> photosUrls;
 
-    public Room() {}
+    public Room() {
+    }
 
     public Room(String number, List<BedType> beds) {
         if (beds == null) {

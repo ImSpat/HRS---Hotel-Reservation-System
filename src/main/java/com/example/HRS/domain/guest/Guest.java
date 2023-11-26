@@ -46,10 +46,10 @@ public class Guest {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        if (phoneNumber.length()>20) {
+        if (phoneNumber.length() > 20) {
             throw new IllegalArgumentException("Phone number too long, max 20 chars");
         }
-        this.phoneNumber=phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
 }

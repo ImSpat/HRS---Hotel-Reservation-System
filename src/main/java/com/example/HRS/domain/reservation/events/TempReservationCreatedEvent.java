@@ -1,6 +1,5 @@
 package com.example.HRS.domain.reservation.events;
 
-import lombok.Data;
 import org.springframework.context.ApplicationEvent;
 
 import java.time.LocalDateTime;

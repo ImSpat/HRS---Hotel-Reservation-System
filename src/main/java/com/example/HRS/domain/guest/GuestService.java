@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class GuestService {
 
-    private GuestRepository repository;
+    private final GuestRepository repository;
 
     @Autowired
     public GuestService(GuestRepository repository) {

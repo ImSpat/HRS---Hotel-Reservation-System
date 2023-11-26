@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class HandleMailTempReservationCreateEvent implements ApplicationListener<TempReservationCreatedEvent> {
 
-    private EmailService emailService;
+    private final EmailService emailService;
 
     @Autowired
     public HandleMailTempReservationCreateEvent(EmailService emailService) {

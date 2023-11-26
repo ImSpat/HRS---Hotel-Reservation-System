@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
     List<Reservation> findByConfirmed(Boolean confirmed);
+
     List<Reservation> findByRoom_Id(Long id);
 }
