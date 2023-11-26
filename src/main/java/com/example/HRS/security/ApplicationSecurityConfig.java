@@ -15,7 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 
@@ -51,9 +50,7 @@ public class ApplicationSecurityConfig {
     @Bean
     public SecurityFilterChain formLoginFilterChain(HttpSecurity http) throws Exception {
         http
-                .headers(headers -> headers.disable())
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers(toH2Console()).permitAll()
                         .requestMatchers(antMatcher("/login"),
                                 antMatcher("/v3/api-docs/**"), antMatcher("/swagger-ui/**")).permitAll()
                         .anyRequest().authenticated()
