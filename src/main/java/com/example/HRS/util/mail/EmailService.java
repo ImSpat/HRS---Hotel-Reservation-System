@@ -13,10 +13,8 @@ public class EmailService {
 
     @Value("${hrs.protocol}")
     private String protocol;
-    @Value("${hrs.domain}")
+   @Value("${hrs.domain}")
     private String domain;
-    @Value("${hrs.port}")
-    private String port;
     private final String confirmationEndpoint = "reservations/confirm";
 
     @Autowired
@@ -28,7 +26,7 @@ public class EmailService {
 
         SimpleMailMessage mail = new SimpleMailMessage();
 
-        String endpoint = String.format("%s://%s:%s/%s/%d", protocol, domain, port, confirmationEndpoint, reservationId);
+        String endpoint = String.format("%s://%s/%s/%d", protocol, domain, confirmationEndpoint, reservationId);
 
         mail.setTo(email);
         mail.setFrom("systemhrsofficial@gmail.com");
