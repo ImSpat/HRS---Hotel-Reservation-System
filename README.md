@@ -1,5 +1,6 @@
 ## Used Technologies
-- Spring Framework
+- Java 17
+- Spring Boot
 - Spring Security
 - Spring Data JPA
 - Hibernate
